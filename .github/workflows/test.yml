@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   push: # Run CI for all branches except GitHub merge queue tmp branches
     branches-ignore:
     - "gh-readonly-queue/**"
