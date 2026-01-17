@@ -265,7 +265,11 @@ impl core::fmt::Display for NoAcknowledgeSource {
 ///
 /// This just defines the error type, to be used by the other traits.
 pub trait ErrorType {
-    /// Error type
+    /// Error type.
+    #[cfg(feature = "defmt-03")]
+    type Error: Error + defmt::Format;
+    /// Error type.
+    #[cfg(not(feature = "defmt-03"))]
     type Error: Error;
 }
 

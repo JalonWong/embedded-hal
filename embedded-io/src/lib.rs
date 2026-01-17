@@ -218,6 +218,10 @@ impl Error for std::io::Error {
 /// which might be different types.
 pub trait ErrorType {
     /// Error type of all the IO operations on this type.
+    #[cfg(feature = "defmt")]
+    type Error: Error + defmt::Format;
+    /// Error type of all the IO operations on this type.
+    #[cfg(not(feature = "defmt"))]
     type Error: Error;
 }
 
