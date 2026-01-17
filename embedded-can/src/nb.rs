@@ -6,6 +6,10 @@ pub trait Can {
     type Frame: crate::Frame;
 
     /// Associated error type.
+    #[cfg(feature = "defmt")]
+    type Error: crate::Error + defmt::Format;
+    /// Associated error type.
+    #[cfg(not(feature = "defmt"))]
     type Error: crate::Error;
 
     /// Puts a frame in the transmit buffer to be sent on the bus.

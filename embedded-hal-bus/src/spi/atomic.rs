@@ -3,6 +3,8 @@ use embedded_hal::digital::OutputPin;
 use embedded_hal::spi::{Error, ErrorKind, ErrorType, Operation, SpiBus, SpiDevice};
 
 use super::DeviceError;
+#[cfg(feature = "defmt-03")]
+use crate::defmt;
 use crate::spi::shared::transaction;
 use crate::util::AtomicCell;
 
@@ -36,12 +38,13 @@ pub struct AtomicDevice<'a, BUS, CS, D> {
     delay: D,
 }
 
-#[derive(Debug, Copy, Clone)]
 /// Wrapper type for errors returned by [`AtomicDevice`].
+#[derive(Debug, Copy, Clone)]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(feature = "portable-atomic", target_has_atomic = "8")))
 )]
+#[cfg_attr(feature = "defmt-03", derive(defmt::Format))]
 pub enum AtomicError<T: Error> {
     /// This error is returned if the SPI bus was already in use when an operation was attempted,
     /// which indicates that the driver requirements are not being met with regard to

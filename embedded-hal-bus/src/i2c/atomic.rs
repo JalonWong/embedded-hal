@@ -1,5 +1,7 @@
 use embedded_hal::i2c::{Error, ErrorKind, ErrorType, I2c};
 
+#[cfg(feature = "defmt-03")]
+use crate::defmt;
 use crate::util::AtomicCell;
 
 /// Atomics-based shared bus [`I2c`] implementation.
@@ -30,6 +32,8 @@ use crate::util::AtomicCell;
 /// use embedded_hal_bus::i2c;
 /// use embedded_hal_bus::util::AtomicCell;
 /// # use embedded_hal::i2c::{self as hali2c, SevenBitAddress, TenBitAddress, I2c, Operation, ErrorKind};
+/// # #[cfg(feature = "defmt-03")]
+/// # use embedded_hal::defmt;
 /// # pub struct Sensor<I2C> {
 /// #     i2c: I2C,
 /// #     address: u8,
@@ -42,6 +46,7 @@ use crate::util::AtomicCell;
 /// # type PressureSensor<I2C> = Sensor<I2C>;
 /// # type TemperatureSensor<I2C> = Sensor<I2C>;
 /// # pub struct I2c0;
+/// # #[cfg_attr(feature = "defmt-03", derive(defmt::Format))]
 /// # #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 /// # pub enum Error { }
 /// # impl hali2c::Error for Error {
@@ -80,6 +85,7 @@ pub struct AtomicDevice<'a, T> {
     bus: &'a AtomicCell<T>,
 }
 
+#[cfg_attr(feature = "defmt-03", derive(defmt::Format))]
 #[derive(Debug, Copy, Clone)]
 /// Wrapper type for errors originating from the atomically-checked I2C bus manager.
 pub enum AtomicError<T: Error> {

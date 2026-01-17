@@ -17,6 +17,8 @@ use embedded_hal::i2c::{ErrorType, I2c};
 /// use embedded_hal_bus::i2c;
 /// use core::cell::RefCell;
 /// # use embedded_hal::i2c::{self as hali2c, SevenBitAddress, TenBitAddress, I2c, Operation, ErrorKind};
+/// # #[cfg(feature = "defmt-03")]
+/// # use embedded_hal::defmt;
 /// # pub struct Sensor<I2C> {
 /// #     i2c: I2C,
 /// #     address: u8,
@@ -29,6 +31,7 @@ use embedded_hal::i2c::{ErrorType, I2c};
 /// # type PressureSensor<I2C> = Sensor<I2C>;
 /// # type TemperatureSensor<I2C> = Sensor<I2C>;
 /// # pub struct I2c0;
+/// # #[cfg_attr(feature = "defmt-03", derive(defmt::Format))]
 /// # #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 /// # pub enum Error { }
 /// # impl hali2c::Error for Error {
