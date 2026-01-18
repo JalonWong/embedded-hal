@@ -15,4 +15,5 @@ jobs:
         with:
           toolchain: nightly-2024-07-26
       # tokio/net required to workaround https://github.com/tokio-rs/tokio/issues/6165
-      - run: RUSTDOCFLAGS="--deny=warnings --cfg=docsrs" cargo doc --all-features --features tokio/net
+      - run: RUSTDOCFLAGS="--deny=warnings --cfg=docsrs" cargo doc --workspace --exclude=embedded-io-adapters --all-features
+      - run: RUSTDOCFLAGS="--deny=warnings --cfg=docsrs" cargo doc --package=embedded-io-adapters --all-features --features tokio/net

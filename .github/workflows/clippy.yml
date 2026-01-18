@@ -14,4 +14,5 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
-      - run: cargo clippy --all-features -- --deny=warnings
+      - run: cargo clippy --workspace --exclude=embedded-io-adapters --all-features -- --deny=warnings
+      - run: cargo clippy --package=embedded-io-adapters --all-features -- --deny=warnings
