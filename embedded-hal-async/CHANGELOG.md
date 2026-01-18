@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-No unreleased changes yet.
+- Update `defmt` to v1
 
 ## [v1.0.0] - 2023-12-28
 

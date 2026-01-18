@@ -2,7 +2,7 @@
 
 use core::ops::Not;
 
-#[cfg(feature = "defmt-03")]
+#[cfg(feature = "defmt")]
 use crate::defmt;
 
 /// Error.
@@ -27,7 +27,7 @@ impl Error for core::convert::Infallible {
 /// free to define more specific or additional error types. However, by providing
 /// a mapping to these common errors, generic code can still react to them.
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "defmt-03", derive(defmt::Format))]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[non_exhaustive]
 pub enum ErrorKind {
     /// A different error occurred. The original error may contain more information.
@@ -60,10 +60,10 @@ impl core::fmt::Display for ErrorKind {
 /// This just defines the error type, to be used by the other traits.
 pub trait ErrorType {
     /// Error type.
-    #[cfg(feature = "defmt-03")]
+    #[cfg(feature = "defmt")]
     type Error: Error + defmt::Format;
     /// Error type.
-    #[cfg(not(feature = "defmt-03"))]
+    #[cfg(not(feature = "defmt"))]
     type Error: Error;
 }
 
@@ -86,7 +86,7 @@ impl<T: ErrorType + ?Sized> ErrorType for &mut T {
 /// assert_eq!(!state, PinState::High);
 /// ```
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
-#[cfg_attr(feature = "defmt-03", derive(defmt::Format))]
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum PinState {
     /// Low pin state.
     Low,

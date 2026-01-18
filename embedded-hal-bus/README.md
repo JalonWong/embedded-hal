@@ -31,7 +31,7 @@ provides mechanisms to obtain multiple `I2c` instances out of a single `I2c` ins
 ## Optional Cargo features
 
 - **`async`**: enable `embedded-hal-async` support.
-- **`defmt-03`**: Derive `defmt::Format` from `defmt` 0.3 for enums and structs.
+- **`defmt`**: Derive `defmt::Format` from `defmt` 1 for enums and structs.
 - **`alloc`**: enable implementations using `alloc` (for instance, `spi::RcDevice`, which makes use of `alloc::rc::Rc`)
 - **`portable-atomic`**: Use `portable-atomic` to enable `atomic-device` on devices without native atomic CAS
 

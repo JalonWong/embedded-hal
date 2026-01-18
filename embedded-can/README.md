@@ -15,7 +15,7 @@ This project is developed and maintained by the [HAL team](https://github.com/ru
 
 ## Optional features
 
-- **`defmt-03`**: Derive `defmt::Format` from `defmt` 0.3 for enums and structs.
+- **`defmt`**: Derive `defmt::Format` from `defmt` 1 for enums and structs.
 
 ## Minimum Supported Rust Version (MSRV)
 
